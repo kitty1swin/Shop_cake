@@ -11,7 +11,7 @@ namespace Shop_cake.Data.Models
         public string? Comment { get; set; }
         public DateTime? CommentDate { get; set; }
         public int? ProductId { get; set; }
-        public int? UserId { get; set; } // Добавляем столбец UserId
+        public int? UserId { get; set; } 
 
         public Order? Order { get; set; }
         public int? OrderId { get; set; }

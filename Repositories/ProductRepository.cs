@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop_cake.Data.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Shop_cake.Data.Repositories
@@ -30,20 +31,5 @@ namespace Shop_cake.Data.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateProductAsync(Product product)
-        {
-            _dbContext.Products.Update(product);
-            await _dbContext.SaveChangesAsync();
-        }
-
-        public async Task DeleteProductAsync(int id)
-        {
-            var product = await _dbContext.Products.FindAsync(id);
-            if (product != null)
-            {
-                _dbContext.Products.Remove(product);
-                await _dbContext.SaveChangesAsync();
-            }
-        }
     }
 }

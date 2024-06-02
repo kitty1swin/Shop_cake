@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Shop_cake.Data.Models;
 
-namespace Shop_cake.Data
+namespace Shop_cake.Data.Repositories
 {
     public class FeedbackRepository
     {
@@ -45,6 +45,24 @@ namespace Shop_cake.Data
                 _dbContext.Feedbacks.Remove(feedback);
                 _dbContext.SaveChanges();
             }
+        }
+
+        public List<Feedback> GetFeedbacksByUserId(int userId)
+        {
+            return _dbContext.Feedbacks.Where(f => f.UserId == userId).ToList();
+        }
+
+        public void AddOrderFeedback(Order order, string comment, int rating)
+        {
+            var feedback = new Feedback
+            {
+                UserId = order.UserId,
+                OrderId = order.Id,
+                Comment = comment,
+                CommentDate = DateTime.Now,
+                Rating = rating
+            };
+            AddFeedback(feedback);
         }
     }
 }
